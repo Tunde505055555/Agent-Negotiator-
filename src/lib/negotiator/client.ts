@@ -165,3 +165,9 @@ export function explorerTxUrl(hash: string): string {
   const base = studionet.blockExplorers?.default.url;
   return base ? `${base}/tx/${hash}` : hash;
 }
+
+/** True when the agent owner recorded on chain is this browser's signer. */
+export function isMine(owner: string | undefined): boolean {
+  const me = signerAddress();
+  return !!owner && !!me && owner.toLowerCase() === me.toLowerCase();
+}
